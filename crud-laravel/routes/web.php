@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,10 @@ Route::get('/', function () {
 });
 Route::resource('penduduk', PendudukController::class);
 Route::get('/datapenduduk', [PendudukController::class, 'tabel']);
+
+// Login
+Route::get('/registeruserbaru', [LoginController::class, 'registeruserbaru']);
+Route::post('/prosesregisteruserbaru', [LoginController::class, 'prosesregisteruserbaru']);
+Route::get('/loginuserbaru', [LoginController::class, 'loginuserbaru']);
+Route::post('/prosesloginuserbaru', [LoginController::class, 'prosesloginuserbaru']);
+Route::get('/logoutuserbaru', [LoginController::class, 'logoutuserbaru']);

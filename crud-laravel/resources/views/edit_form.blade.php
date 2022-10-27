@@ -178,6 +178,9 @@
             <i class="fas fa-th-large"></i>
           </a>
         </li>
+        <li>
+            <a href="{{url('/logoutuserbaru')}}" class="btn btn-danger">Logout</a>
+        </li>
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -185,7 +188,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index.php" class="brand-link">
+      <a href="#" class="brand-link">
         <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
