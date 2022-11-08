@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BackendUTS | Log in (v2)</title>
+    <title>Login | AdminSystem</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -22,7 +22,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="./index2.html" class="h1"><b>UTS</b>Backend</a>
+                <a href="./index2.html" class="h1"><b>Admin</b>System</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg"><b>Login</b></p>
@@ -49,7 +49,7 @@
                     </div>
                 @endif
 
-                <form action="{{ url('login72') }}" method="POST">
+                <form action="{{ url('login96') }}" method="POST">
                     @csrf
 
                     <div class="input-group mb-3">
@@ -78,17 +78,7 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <div class="social-auth-links text-center">
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i>
-                        Sign up using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
-                    </a>
-                </div>
-                <a href="{{ url('/register72') }}" class="text-center">Crate account</a>
+                <a href="{{ url('/register96') }}" class="text-center">Create account</a>
             </div>
             <!-- /.card-body -->
         </div>
