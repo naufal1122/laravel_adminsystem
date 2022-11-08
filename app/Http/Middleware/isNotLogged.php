@@ -19,11 +19,11 @@ class isNotLogged
         if ($request->user() != null) {
 
             if ($request->user()->role == 'user') {
-                return redirect('/profile72');
+                return redirect('/profile96');
             }
 
             if ($request->user()->role == 'admin') {
-                return redirect('/dashboard72');
+                return redirect('/dashboard96');
             }
         }
 

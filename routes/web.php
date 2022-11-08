@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin72Controller;
-use App\Http\Controllers\Users72Controller;
+use App\Http\Controllers\Admin96Controller;
+use App\Http\Controllers\Users96Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,50 +16,50 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/register72');
+    return redirect('/register96');
 });
 
 Route::group(['middleware' => ['isNotLogged']], function () {
     // Login & Register
-    Route::view('/register72', 'register');
-    Route::view('/login72', 'login');
-    Route::post('/register72', [Users72Controller::class, 'registerHandler72']);
-    Route::post('/login72', [Users72Controller::class, 'loginHandler72']);
+    Route::view('/register96', 'register');
+    Route::view('/login96', 'login');
+    Route::post('/register96', [Users96Controller::class, 'registerHandler96']);
+    Route::post('/login96', [Users96Controller::class, 'loginHandler96']);
 });
 
 Route::group(['middleware' => ['isUser']], function () {
     // dashboard user
-    Route::get('/profile72', [Users72Controller::class, 'profilePage72']);
+    Route::get('/profile96', [Users96Controller::class, 'profilePage96']);
 
     //change Password
-    Route::get('/changePassword72', [Users72Controller::class, 'editPasswordPage72']);
-    Route::post('/updatePassword72', [Users72Controller::class, 'updatePassword72']);
+    Route::get('/changePassword96', [Users96Controller::class, 'editPasswordPage96']);
+    Route::post('/updatePassword96', [Users96Controller::class, 'updatePassword96']);
 
     // edit profile user
-    Route::post('/updateProfil72', [Users72Controller::class, 'updateProfil72']);
-    Route::post('/uploadPhotoProfil72', [Users72Controller::class, 'uploadPhotoProfil72']);
-    Route::post('/uploadPhotoKTP72', [Users72Controller::class, 'uploadPhotoKTP72']);
+    Route::post('/updateProfil96', [Users96Controller::class, 'updateProfil96']);
+    Route::post('/uploadPhotoProfil96', [Users96Controller::class, 'uploadPhotoProfil96']);
+    Route::post('/uploadPhotoKTP96', [Users96Controller::class, 'uploadPhotoKTP96']);
 });
 
 Route::group(['middleware' => ['isAdmin']], function () {
     //dashboard && detail user
-    Route::get('/dashboard72', [Admin72Controller::class, 'dashboardPage72']);
-    Route::get('/detail72/{id}', [Admin72Controller::class, 'detailPage72']);
+    Route::get('/dashboard96', [Admin96Controller::class, 'dashboardPage96']);
+    Route::get('/detail96/{id}', [Admin96Controller::class, 'detailPage96']);
 
     // update user
-    Route::get('/update72/user/{id}/status', [Admin72Controller::class, 'updateUserStatus72']);
-    Route::post('/update72/user/{id}/agama', [Admin72Controller::class, 'updateUserAgama72']);
+    Route::get('/update96/user/{id}/status', [Admin96Controller::class, 'updateUserStatus96']);
+    Route::post('/update96/user/{id}/agama', [Admin96Controller::class, 'updateUserAgama96']);
 
     // CRUD AGAMA
     // Show all agama
-    Route::get("/agama72", [Admin72Controller::class, "agamaPage72"]);
+    Route::get("/agama96", [Admin96Controller::class, "agamaPage96"]);
     // add agama
-    Route::post("/agama72", [Admin72Controller::class, "createAgama72"]);
+    Route::post("/agama96", [Admin96Controller::class, "createAgama96"]);
     // show edit agama & update agama
-    Route::get("/agama72/{id}/edit", [Admin72Controller::class, 'editAgamaPage72']);
-    Route::post("/agama72/{id}/update", [Admin72Controller::class, 'updateAgama72']);
+    Route::get("/agama96/{id}/edit", [Admin96Controller::class, 'editAgamaPage96']);
+    Route::post("/agama96/{id}/update", [Admin96Controller::class, 'updateAgama96']);
     // delete agama
-    Route::get("/agama72/{id}/delete", [Admin72Controller::class, 'deleteAgama72']);
+    Route::get("/agama96/{id}/delete", [Admin96Controller::class, 'deleteAgama96']);
 });
 
-Route::get('/logout72', [Users72Controller::class, 'logoutHandler72'])->middleware('isLogged');
+Route::get('/logout96', [Users96Controller::class, 'logoutHandler96'])->middleware('isLogged');

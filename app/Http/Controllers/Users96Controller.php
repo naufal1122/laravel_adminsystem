@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detail_data72;
+use App\Models\Detail_data96;
 use App\Models\User;
-use App\Models\Agama72;
+use App\Models\Agama96;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class Users72Controller extends Controller
+class Users96Controller extends Controller
 {
 
-    public function profilePage72()
+    public function profilePage96()
     {
         $user = Auth::user();
-        $agama = Agama72::all();
+        $agama = Agama96::all();
 
         $usersData = User::find($user->id);
         $detail = $usersData->detail;
@@ -25,22 +25,22 @@ class Users72Controller extends Controller
         return view('profile', ['user' => $all_data, 'agama' => $agama, 'is_preview' => false]);
     }
 
-    public function logoutHandler72()
+    public function logoutHandler96()
     {
         $logout = Auth::logout();
 
         if ($logout) {
-            return redirect('/login72');
+            return redirect('/login96');
         } else {
             return back()->with('error', 'Logout gagal');
         }
     }
 
-    public function registerHandler72(Request $request)
+    public function registerHandler96(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users72',
+            'email' => 'required|email|unique:users96',
             'password' => 'required|min:8',
             'repassword' => 'required|same:password',
             'role' => 'required|in:user,admin',
@@ -54,18 +54,18 @@ class Users72Controller extends Controller
         $user->fill($userData);
         $save = $user->save();
 
-        $detailUser = new Detail_data72();
+        $detailUser = new Detail_data96();
         $detailUser->id_user = $user->id;
         $detailUser->save();
 
         if ($save && $detailUser) {
-            return redirect('/login72')->with('success', 'Register berhasil');
+            return redirect('/login96')->with('success', 'Register berhasil');
         } else {
             return back()->with('error', 'Register gagal');
         }
     }
 
-    public function loginHandler72(Request $request)
+    public function loginHandler96(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
@@ -78,23 +78,23 @@ class Users72Controller extends Controller
             $user = Auth::user();
 
             if ($user->role == "user" && $user->is_active == 1) {
-                return redirect('/profile72');
+                return redirect('/profile96');
             }
 
             if ($user->role == "admin") {
-                return redirect('/dashboard72');
+                return redirect('/dashboard96');
             }
 
             if ($user->role == "user" && $user->is_active == 0) {
                 Auth::logout();
-                return back()->with('error', 'Akun anda belum di approve oleh admin');
+                return back()->with('error', 'Your account is not activated by admin');
             }
         }
 
         return back()->with('error', 'Username atau password salah');
     }
 
-    public function uploadPhotoKTP72()
+    public function uploadPhotoKTP96()
     {
         $user = Auth::user();
         $detail = User::find($user->id)->detail;
@@ -119,7 +119,7 @@ class Users72Controller extends Controller
         }
     }
 
-    public function uploadPhotoProfil72()
+    public function uploadPhotoProfil96()
     {
         $user = Auth::user();
         $detail = User::find($user->id);
@@ -145,12 +145,12 @@ class Users72Controller extends Controller
         }
     }
 
-    public function updateProfil72(Request $request)
+    public function updateProfil96(Request $request)
     {
         $user = Auth::user();
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users72,email,' . $user->id,
+            'email' => 'required|email|unique:users96,email,' . $user->id,
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -160,7 +160,7 @@ class Users72Controller extends Controller
         $userData = User::find($user->id);
         $detail = User::find($user->id)->detail;
 
-        $isAgamaValid = Agama72::find($request->id_agama);
+        $isAgamaValid = Agama96::find($request->id_agama);
 
         if (!$isAgamaValid) {
             return back()->with('error', 'Agama tidak valid');
@@ -184,12 +184,12 @@ class Users72Controller extends Controller
         }
     }
 
-    public function editPasswordPage72()
+    public function editPasswordPage96()
     {
         return view('editPassword');
     }
 
-    public function updatePassword72(Request $request)
+    public function updatePassword96(Request $request)
     {
         $user = Auth::user();
         $request->validate([

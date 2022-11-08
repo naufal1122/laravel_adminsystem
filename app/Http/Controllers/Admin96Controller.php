@@ -2,53 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agama72;
+use App\Models\Agama96;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class Admin72Controller extends Controller
+class Admin96Controller extends Controller
 {
-    public function dashboardPage72()
+    public function dashboardPage96()
     {
         $user = User::where('role', 'user')->get();
-        $agama = Agama72::all();
+        $agama = Agama96::all();
 
         return view('dashboard', ['data' => $user, 'agama' => $agama]);
     }
 
-    public function agamaPage72()
+    public function agamaPage96()
     {
-        $agama = Agama72::all();
+        $agama = Agama96::all();
 
         return view('agama', ['all_agama' => $agama]);
     }
 
-    public function editAgamaPage72(Request $request)
+    public function editAgamaPage96(Request $request)
     {
 
         $id = $request->id;
 
-        $agama = Agama72::find($id);
+        $agama = Agama96::find($id);
 
         if (!$agama) {
             return back()->with('error', 'Agama tidak ditemukan');
         }
 
-        $all_agama = Agama72::all();
+        $all_agama = Agama96::all();
 
         return view('agama', ['all_agama' => $all_agama, 'agama' => $agama]);
     }
 
-    public function detailPage72(Request $request)
+    public function detailPage96(Request $request)
     {
         $id = $request->id;
         $user = User::find($id);
 
         if (!$user) {
-            return redirect('/dashboard72')->with('error', 'User tidak ditemukan');
+            return redirect('/dashboard96')->with('error', 'User tidak ditemukan');
         }
 
-        $agama = Agama72::all();
+        $agama = Agama96::all();
 
         $detail = $user->detail;
         $data = array_merge($user->toArray(), $detail->toArray());
@@ -57,13 +57,13 @@ class Admin72Controller extends Controller
     }
 
 
-    public function updateUserStatus72(Request $request)
+    public function updateUserStatus96(Request $request)
     {
         $id = $request->id;
         $user = User::find($id);
 
         if (!$user) {
-            return redirect('/dashboard72')->with('error', 'User tidak ditemukan');
+            return redirect('/dashboard96')->with('error', 'User tidak ditemukan');
         }
 
         $updateStatus = $user->update([
@@ -71,62 +71,62 @@ class Admin72Controller extends Controller
         ]);
 
         if ($updateStatus) {
-            return redirect('/dashboard72')->with('success', 'Status berhasil diubah');
+            return redirect('/dashboard96')->with('success', 'Status berhasil diubah');
         } else {
-            return redirect('/dashboard72')->with('error', 'Status gagal diubah');
+            return redirect('/dashboard96')->with('error', 'Status gagal diubah');
         }
     }
 
-    public function updateUserAgama72(Request $request)
+    public function updateUserAgama96(Request $request)
     {
         $id = $request->id;
         $user = User::find($id);
 
         if (!$user) {
-            return redirect('/dashboard72')->with('error', 'User tidak ditemukan');
+            return redirect('/dashboard96')->with('error', 'User tidak ditemukan');
         }
 
         $request->validate([
-            'agama' => 'required|exists:agama72,id'
+            'agama' => 'required|exists:agama96,id'
         ]);
 
         $user->detail->id_agama = $request->agama;
         $updateAgama = $user->detail->save();
 
         if ($updateAgama) {
-            return redirect('/dashboard72')->with('success', 'Agama berhasil diubah');
+            return redirect('/dashboard96')->with('success', 'Agama berhasil diubah');
         } else {
-            return redirect('/dashboard72')->with('error', 'Agama gagal diubah');
+            return redirect('/dashboard96')->with('error', 'Agama gagal diubah');
         }
     }
 
 
-    public function deleteAgama72(Request $request)
+    public function deleteAgama96(Request $request)
     {
         $id = $request->id;
-        $agama = Agama72::find($id);
+        $agama = Agama96::find($id);
 
         if (!$agama) {
-            return redirect('/agama72')->with('error', 'Agama tidak ditemukan');
+            return redirect('/agama96')->with('error', 'Agama tidak ditemukan');
         }
 
         $deleteAgama = $agama->delete();
 
 
         if ($deleteAgama) {
-            return redirect('/agama72')->with('success', 'Agama berhasil dihapus');
+            return redirect('/agama96')->with('success', 'Agama berhasil dihapus');
         } else {
-            return redirect('/agama72')->with('error', 'Agama gagal dihapus');
+            return redirect('/agama96')->with('error', 'Agama gagal dihapus');
         }
     }
 
-    public function updateAgama72(Request $request)
+    public function updateAgama96(Request $request)
     {
         $id = $request->id;
-        $agama = Agama72::find($id);
+        $agama = Agama96::find($id);
 
         if (!$agama) {
-            return redirect('/agama72')->with('error', 'Agama tidak ditemukan');
+            return redirect('/agama96')->with('error', 'Agama tidak ditemukan');
         }
 
         $request->validate([
@@ -138,27 +138,27 @@ class Admin72Controller extends Controller
         ]);
 
         if ($updateAgama) {
-            return redirect('/agama72')->with('success', 'Agama berhasil diubah');
+            return redirect('/agama96')->with('success', 'Agama berhasil diubah');
         } else {
-            return redirect('/agama72')->with('error', 'Agama gagal diubah');
+            return redirect('/agama96')->with('error', 'Agama gagal diubah');
         }
     }
 
 
-    public function createAgama72(Request $request)
+    public function createAgama96(Request $request)
     {
         $request->validate([
             'nama_agama' => 'required'
         ]);
 
-        $createAgama = Agama72::create([
+        $createAgama = Agama96::create([
             'nama_agama' => $request->nama_agama
         ]);
 
         if ($createAgama) {
-            return redirect('/agama72')->with('success', 'Agama berhasil ditambahkan');
+            return redirect('/agama96')->with('success', 'Agama berhasil ditambahkan');
         } else {
-            return redirect('/agama72')->with('error', 'Agama gagal ditambahkan');
+            return redirect('/agama96')->with('error', 'Agama gagal ditambahkan');
         }
     }
 }

@@ -20,7 +20,7 @@ class isLogged
         if (Auth::check()) {
             return $next($request);
         } else {
-            return redirect('/login72');
+            return redirect('/login96');
         }
     }
 }

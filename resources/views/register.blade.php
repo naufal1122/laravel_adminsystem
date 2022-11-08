@@ -36,7 +36,7 @@
                     </div>
                 @endif
 
-                <form action="{{ url('/register72') }}" method="post">
+                <form action="{{ url('/register96') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" name="name" class="form-control" placeholder="Full name">
@@ -97,7 +97,7 @@
                     </a>
                 </div>
 
-                <a href="{{ url('/login72') }}" class="text-center">I already have a membership</a>
+                <a href="{{ url('/login96') }}" class="text-center">I already have a membership</a>
 
             </div>
             <!-- /.form-box -->

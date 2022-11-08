@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Detail_data72 extends Model
+class Detail_data96 extends Model
 {
     use HasFactory;
 
-    public $table = 'detail_data72';
+    public $table = 'detail_data96';
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -24,11 +24,11 @@ class Detail_data72 extends Model
 
     public function user()
     {
-        return $this->belongsTo(User72::class, 'id_user', 'id');
+        return $this->belongsTo(User96::class, 'id_user', 'id');
     }
 
     public function agama()
     {
-        return $this->belongsTo(Agama72::class, 'id_agama', 'id');
+        return $this->belongsTo(Agama96::class, 'id_agama', 'id');
     }
 }

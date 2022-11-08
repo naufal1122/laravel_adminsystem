@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public $table = 'users72';
+    public $table = 'users96';
     protected $primaryKey = 'id';
 
     /**
@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function detail()
     {
-        return $this->hasOne(Detail_data72::class, 'id_user', 'id');
+        return $this->hasOne(Detail_data96::class, 'id_user', 'id');
     }
 }

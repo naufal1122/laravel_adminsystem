@@ -179,7 +179,7 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        @include('partials.sidebar')
+                        @include('include.sidebar')
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -198,7 +198,7 @@
                         <br>
                         <h4 class="card-title">Hi, Welcome Admin</h4>
                         </div>
-                        
+
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -258,7 +258,7 @@
                                                     <td>{{ $item->role }}</td>
 
                                                     <td style="width: 125px">
-                                                        <form action="{{ url("/update72/user/{$item->id}/agama") }}"
+                                                        <form action="{{ url("/update96/user/{$item->id}/agama") }}"
                                                             method="POST">
                                                             @csrf
                                                             <div class="row">
@@ -284,18 +284,18 @@
                                                     <td>
                                                         @if ($item->is_active == 1)
                                                             <a class="btn btn-danger btn-block"
-                                                                href="{{ url("/update72/user/{$item->id}/status/") }}">
+                                                                href="{{ url("/update96/user/{$item->id}/status/") }}">
                                                                 Nonaktif
                                                             </a>
                                                         @else
                                                             <a class="btn btn-success btn-block"
-                                                                href="{{ url("/update72/user/{$item->id}/status/") }}">
+                                                                href="{{ url("/update96/user/{$item->id}/status/") }}">
                                                                 Aktifkan
                                                             </a>
                                                         @endif
                                                     </td>
                                                     <td><a class="btn btn-success btn-block"
-                                                            href="{{ url("detail72/$item->id") }}">Detail</a>
+                                                            href="{{ url("detail96/$item->id") }}">Detail</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -73,7 +73,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        @include('partials.sidebar')
+                        @include('include.sidebar')
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -140,7 +140,7 @@
                                     </div>
                                     @if (!$is_preview)
                                         <p class="text-muted text-center">{{ $user['role'] }}</p>
-                                        <form enctype='multipart/form-data' action="{{ url('/uploadPhotoProfil72') }}"
+                                        <form enctype='multipart/form-data' action="{{ url('/uploadPhotoProfil96') }}"
                                             method="POST">
                                             @csrf
                                             <div class="mt-3 form-group">
@@ -175,7 +175,7 @@
                                     </div>
 
                                     @if (!$is_preview)
-                                        <form enctype='multipart/form-data' action="{{ url('/uploadPhotoKTP72') }}"
+                                        <form enctype='multipart/form-data' action="{{ url('/uploadPhotoKTP96') }}"
                                             method="POST">
                                             @csrf
                                             <div class="form-group mt-3">
@@ -215,7 +215,7 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="settings">
-                                            <form class="form-horizontal" action="{{ url('/updateProfil72') }}"
+                                            <form class="form-horizontal" action="{{ url('/updateProfil96') }}"
                                                 method="POST">
                                                 @csrf
                                                 <div class="form-group row">

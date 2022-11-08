@@ -22,9 +22,9 @@ class isUser
             }
 
             if ($request->user()->role == 'admin') {
-                return redirect('/dashboard72');
+                return redirect('/dashboard96');
             }
         }
-        return redirect('/login72');
+        return redirect('/login96');
     }
 }

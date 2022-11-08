@@ -40,7 +40,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        @include('partials.sidebar')
+                        @include('include.sidebar')
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -106,9 +106,9 @@
                                                     <td>{{ $item->id }}</td>
                                                     <td>{{ $item->nama_agama }}</td>
                                                     <td style="width: 150px">
-                                                        <a href="{{ url("agama72/{$item->id}/edit") }}"
+                                                        <a href="{{ url("agama96/{$item->id}/edit") }}"
                                                             class="btn btn-warning">Edit</a>
-                                                        <a href="{{ url("agama72/{$item->id}/delete") }}"
+                                                        <a href="{{ url("agama96/{$item->id}/delete") }}"
                                                             class="btn btn-danger">Delete</a>
                                                     </td>
                                                 </tr>
@@ -148,9 +148,9 @@
 
 
                                     <form
-                                        @if (isset($agama)) action="{{ url("agama72/{$agama->id}/update") }}"
+                                        @if (isset($agama)) action="{{ url("agama96/{$agama->id}/update") }}"
                                     @else
-                                        action="{{ url('agama72') }}" @endif
+                                        action="{{ url('agama96') }}" @endif
                                         method="POST">
                                         @csrf
                                         <div class="form-group">

@@ -73,7 +73,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        @include('partials.sidebar')
+                        @include('include.sidebar')
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -139,7 +139,7 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="settings">
-                                            <form class="form-horizontal" action="{{ url('/updatePassword72') }}"
+                                            <form class="form-horizontal" action="{{ url('/updatePassword96') }}"
                                                 method="POST">
                                                 @csrf
                                                 <div class="form-group row">

@@ -23,12 +23,12 @@ class isAdmin
             }
 
             if ($request->user()->role == 'user') {
-                return redirect('/profile72');
+                return redirect('/profile96');
             }
         }
 
 
 
-        return redirect('/login72');
+        return redirect('/login96');
     }
 }
