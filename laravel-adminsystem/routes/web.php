@@ -1,13 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin96Controller;
+use App\Http\Controllers\Users96Controller;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\PhotosController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\UserManagement96Controller;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,54 +15,64 @@ use App\Http\Controllers\UserManagement96Controller;
 |
 */
 
+//welcome page
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect('/login96');
 });
 
-Route::group(['middleware'=>'auth'],function()
-{
-    Route::get('home',function()
-    {
-        return view('home');
-    });
-    Route::get('home',function()
-    {
-        return view('home');
-    });
+Route::group(['middleware' => ['isNotLogged']], function () {
+    // Register Login
+    Route::view('/register96', 'register');
+    Route::view('/login96', 'login');
+    Route::post('/register96', [App\Http\Controllers\Register96Controller::class, 'register96']);
+    Route::post('/login96', [App\Http\Controllers\Login96Controller::class, 'login96']);
 });
 
-Auth::routes();
+Route::group(['middleware' => ['isAdmin']], function () {
+    // Welcome
 
-// ----------------------------- home dashboard ------------------------------//
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Detail User
+    Route::get('/dashboard96', [Admin96Controller::class, 'dashboardPage96']);
+    Route::get('/detail96/{id}', [Admin96Controller::class, 'detailPage96']);
 
-// -----------------------------login----------------------------------------//
-Route::get('/login', [App\Http\Controllers\Auth\Login96Controller::class, 'login'])->name('login');
-Route::post('/login', [App\Http\Controllers\Auth\Login96Controller::class, 'authenticate']);
-Route::get('/logout', [App\Http\Controllers\Auth\Login96Controller::class, 'logout'])->name('logout');
+    // Update User
+    Route::get('/update96/user/{id}/status', [Admin96Controller::class, 'updateUserStatus96']);
+    Route::post('/update96/user/{id}/agama', [Admin96Controller::class, 'updateUserAgama96']);
 
-
-// ------------------------------ register ---------------------------------//
-Route::get('/register', [App\Http\Controllers\Auth\Register96Controller::class, 'register'])->name('register');
-Route::post('/register', [App\Http\Controllers\Auth\Register96Controller::class, 'storeUser'])->name('register');
-
-
-// ----------------------------- user profile ------------------------------//
-Route::get('profile_user', [App\Http\Controllers\UserManagement96Controller::class, 'profile'])->name('profile_user');
-Route::post('profile_user/store', [App\Http\Controllers\UserManagement96Controller::class, 'profileStore'])->name('profile_user/store');
-
-// ----------------------------- user userManagement -----------------------//
-Route::get('userManagement', [App\Http\Controllers\UserManagement96Controller::class, 'index'])->middleware('auth')->name('userManagement');
-Route::get('user/add/new', [App\Http\Controllers\UserManagement96Controller::class, 'addNewUser'])->middleware('auth')->name('user/add/new');
-Route::post('user/add/save', [App\Http\Controllers\UserManagement96Controller::class, 'addNewUserSave'])->name('user/add/save');
-Route::get('view/detail/{id}', [App\Http\Controllers\UserManagement96Controller::class, 'viewDetail'])->middleware('auth');
-Route::post('update', [App\Http\Controllers\UserManagement96Controller::class, 'update'])->name('update');
-Route::get('delete_user/{id}', [App\Http\Controllers\UserManagement96Controller::class, 'delete'])->middleware('auth');
-Route::get('activity/log', [App\Http\Controllers\UserManagement96Controller::class, 'activityLog'])->middleware('auth')->name('activity/log');
-Route::get('activity/login/logout', [App\Http\Controllers\UserManagement96Controller::class, 'activityLogInLogOut'])->middleware('auth')->name('activity/login/logout');
-Route::get('userTable', [App\Http\Controllers\UserManagement96Controller::class, 'userTable'])->middleware('auth');
-
-Route::get('change/password', [App\Http\Controllers\UserManagement96Controller::class, 'changePasswordView'])->middleware('auth')->name('change/password');
-Route::post('change/password/db', [App\Http\Controllers\UserManagement96Controller::class, 'changePasswordDB'])->name('change/password/db');
+    // Delete User
+    Route::post('/delete96/user/{id}', [Admin96Controller::class, 'deleteUser96']);
 
 
+    // CRUD AGAMA
+    Route::get("/agama96", [Admin96Controller::class, "agamaPage96"]);
+    // Tambah Agama
+    Route::post("/agama96", [Admin96Controller::class, "createAgama96"]);
+    // Show Agama Menu
+    Route::get("/agama96/{id}/edit", [Admin96Controller::class, 'editAgamaPage96']);
+    Route::post("/agama96/{id}/update", [Admin96Controller::class, 'updateAgama96']);
+    // Delete Data Agama
+    Route::get("/agama96/{id}/delete", [Admin96Controller::class, 'deleteAgama96']);
+});
+
+Route::group(['middleware' => ['isUser']], function () {
+    // Welcome
+
+    // Dashboard
+    Route::get('/profile96', [Users96Controller::class, 'profilePage96']);
+
+    // Edit password
+    Route::get('/changePassword96', [Users96Controller::class, 'editPasswordPage96']);
+    Route::post('/updatePassword96', [Users96Controller::class, 'updatePassword96']);
+
+    // Edit user profile
+    Route::post('/updateProfil96', [Users96Controller::class, 'updateProfil96']);
+    Route::post('/uploadPhotoProfil96', [Users96Controller::class, 'uploadPhotoProfil96']);
+    Route::post('/uploadPhotoKTP96', [Users96Controller::class, 'uploadPhotoKTP96']);
+
+});
+
+// Welcome Page
+Route::get('/welcome96', [App\Http\Controllers\Welcome96Controller::class, 'welcomePage96']);
+
+// Logout Session
+Route::get('/logout96', [Users96Controller::class, 'logout96'])->middleware('isLogged');
